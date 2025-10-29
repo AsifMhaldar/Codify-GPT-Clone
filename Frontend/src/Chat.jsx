@@ -29,11 +29,18 @@ function Chat() {
 
         return () => clearInterval(interval);
 
-    }, [prevChats, reply])
+    }, [prevChats, reply]);
+
+    useEffect(() => {
+    const chatsContainer = document.querySelector('.chats');
+    if (chatsContainer) {
+        chatsContainer.scrollTop = chatsContainer.scrollHeight;
+    }
+}, [prevChats, latestReply]);
 
     return (
         <>
-            {newChat && <h1>Start a New Chat!</h1>}
+            {newChat && <h1>Start a New Chat with CodifyGPT!</h1>}
             <div className="chats">
                 {
                     prevChats?.slice(0, -1).map((chat, idx) => 
